@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post", enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="file" id="file" accept=".pdf" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <div id="notifications"></div>
+
+    <script>
+        const ws = new WebSocket("ws://localhost:8000/ws/notifications/");
+  
+        ws.onmessage = (event) => {
+          const data = JSON.parse(event.data);
+  
+          const type = data.message.type;
+          const content = data.message.content;
+  
+          if (type === "notification") {
+            const notifContainer = document.getElementById("notifications");
+  
+            const newNotif = document.createElement("div");
+            newNotif.innerHTML = content;
+            notifContainer.append(newNotif);
+          }
+  
+          if (type === "done") {
+            window.location.href = '/query'
+          }
+        };
+  
+        ws.onopen = () => {
+          console.log("Connected");
+        };
+  
+        ws.onclose = () => {
+          console.log("Disconnected");
+        };
+      </script>
+{% endblock  %}

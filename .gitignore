@@ -1,0 +1,6 @@
+.venv
+node_modules
+.env
+pnpm-lock.yaml
+pnpm-workspace.yaml
+media/documents
