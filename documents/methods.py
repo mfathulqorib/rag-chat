@@ -14,7 +14,6 @@ class DocumentProcessor:
         self.extracted_text = ""
 
     def extract_text_via_ocr(self):
-        send_notification(notification_type="notification", content="Processing document...")
         uploaded_pdf = mistral.files.upload(
             file={
                 'file_name': self.document.name,
@@ -23,8 +22,9 @@ class DocumentProcessor:
             purpose="ocr"
         )
 
-
         signed_url = mistral.files.get_signed_url(file_id=uploaded_pdf.id)
+
+        send_notification(notification_type="notification", content="Processing document...")
 
         ocr_response = mistral.ocr.process(
             model="mistral-ocr-latest",

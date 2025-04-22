@@ -14,18 +14,18 @@ class DocumentUploadView(View):
     
     def post(self, request):
         file = request.FILES.get("file")
+        document = None
 
         try:
             document = Document.objects.create(file=file, name=file.name)
             run_document_processing(document)
-
-            return redirect('documents')
-        
         except Exception as e:
             print(e)
             messages.error(request, f"Error uploading document: {str(e)}")
 
             return render(request, self.template_name)
+        
+        return render(request, template_name=self.template_name, context={"document": document})
 
     
 class QueryView(View):
