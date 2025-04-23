@@ -66,6 +66,6 @@ class DocumentProcessor:
         send_notification(
             notification_type="done", 
             content={
-                'redirect_url': f"/query/{self.document.id}"
+                'redirect_url': f"/chat/{self.document.id}"
             }
         )

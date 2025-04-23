@@ -1,7 +1,6 @@
 from django.urls import path
-from .views import DocumentUploadView, QueryView
+from .views import DocumentUploadView
 
 urlpatterns = [
-    path('documents/', DocumentUploadView.as_view(), name="documents"),
-    path('query/<str:id>/', QueryView.as_view(), name="query"),
+    path('', DocumentUploadView.as_view(), name="documents"),
 ] 

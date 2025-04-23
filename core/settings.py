@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'documents',
+    'chats',
     'huey.contrib.djhuey',
     'channels',
 ]

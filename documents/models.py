@@ -20,3 +20,6 @@ class Document(BaseModel):
     raw_text = models.TextField(blank=True, null=True)
     summary = models.TextField(blank=True, null=True)
     status = models.CharField(max_length=255, choices=DOC_STATUS_CHOICES, default=DOC_STATUS_PENDING)
+    
+    def __str__(self):
+        return self.name
