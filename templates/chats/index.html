@@ -37,11 +37,9 @@
         ws.onmessage = (event) => {
           const data = JSON.parse(event.data);
           const messageOutput = document.createElement("p")
-          console.log("ok")
 
           messageOutput.innerText = data.message
           chatContainer.appendChild(messageOutput)
-          
         };
   
         ws.onopen = () => {
